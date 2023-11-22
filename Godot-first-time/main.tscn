@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1fvitk022hgt"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_1eucl"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_1eucl")
+
+[node name="play" type="Button" parent="."]
+offset_left = 379.0
+offset_top = 62.0
+offset_right = 711.0
+offset_bottom = 208.0
+rotation = 0.190241
+tooltip_text = "Button to be good. Good button."
+text = "PURAY"
+
+[node name="quit" type="Button" parent="."]
+offset_left = 519.0
+offset_top = 352.0
+offset_right = 806.0
+offset_bottom = 499.0
+rotation = -0.261799
+tooltip_text = "Button to fuck off
+"
+text = "KWIT"
+
+[connection signal="pressed" from="play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
