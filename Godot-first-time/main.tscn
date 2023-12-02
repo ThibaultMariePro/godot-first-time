@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b1fvitk022hgt"]
+[gd_scene load_steps=3 format=3 uid="uid://b1fvitk022hgt"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_1eucl"]
+[ext_resource type="PackedScene" uid="uid://n57rclf5kvl1" path="res://bg.tscn" id="2_rs07i"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_1eucl")
@@ -23,6 +24,8 @@ rotation = -0.261799
 tooltip_text = "Button to fuck off
 "
 text = "KWIT"
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("2_rs07i")]
 
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
