@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://lsx52oevn4y8"]
+[gd_scene load_steps=12 format=3 uid="uid://lsx52oevn4y8"]
 
 [ext_resource type="PackedScene" uid="uid://bin3yhso1xcix" path="res://Player/Player.tscn" id="1_dgfpw"]
 [ext_resource type="Texture2D" uid="uid://b5u0hwyfto1fn" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/environment/tileset.png" id="2_7x4cw"]
 [ext_resource type="PackedScene" uid="uid://n57rclf5kvl1" path="res://BG/bg.tscn" id="4_3lugx"]
 [ext_resource type="PackedScene" uid="uid://cp52p1jdikolq" path="res://Frog/frog.tscn" id="4_6jdnw"]
+[ext_resource type="Script" path="res://Collectables.gd" id="5_phnec"]
+[ext_resource type="PackedScene" uid="uid://7sbveqchaudk" path="res://Gem/gem.tscn" id="5_yqntl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oesq3"]
 texture = ExtResource("2_7x4cw")
@@ -467,7 +469,21 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	text = \"HP : \" + str(get_node(\"../../Player/Player\").health)
+	text = \"HP : \" + str(Game.playerHP)
+"
+
+[sub_resource type="GDScript" id="GDScript_j1lpb"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	text = \"Gold : \" + str(Game.playerGold)
 "
 
 [node name="World" type="Node2D"]
@@ -520,3 +536,25 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 18
 text = "HP"
 script = SubResource("GDScript_ccxtj")
+
+[node name="Gold" type="Label" parent="UI"]
+offset_top = 72.0
+offset_right = 40.0
+offset_bottom = 95.0
+theme_override_colors/font_color = Color(0, 0.745098, 0, 1)
+theme_override_font_sizes/font_size = 18
+text = "Gold
+"
+script = SubResource("GDScript_j1lpb")
+
+[node name="Collectables" type="Node2D" parent="."]
+script = ExtResource("5_phnec")
+
+[node name="gem" parent="Collectables" instance=ExtResource("5_yqntl")]
+position = Vector2(378, 408)
+
+[node name="Timer" type="Timer" parent="Collectables"]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Collectables/Timer" to="Collectables" method="_on_timer_timeout"]

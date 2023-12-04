@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://bin3yhso1xcix"]
+[gd_scene load_steps=27 format=3 uid="uid://bin3yhso1xcix"]
 
 [ext_resource type="Script" path="res://Player/Player.gd" id="1_54vhc"]
 [ext_resource type="Texture2D" uid="uid://cb7sj5i67od75" path="res://Sunny-land-files/Sunny-land-files/Graphical Assets/spritesheets/player.png" id="2_2hnmf"]
@@ -244,6 +244,9 @@ _data = {
 "Run": SubResource("Animation_qkwdv")
 }
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q52md"]
+height = 26.0
+
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_54vhc")
 
@@ -267,3 +270,9 @@ autoplay = "Idle"
 libraries = {
 "": SubResource("AnimationLibrary_xm2e5")
 }
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 5)
+shape = SubResource("CapsuleShape2D_q52md")
